@@ -8,7 +8,6 @@
     Clear Cart
   </button>
 
-  <!-- Safely handle undefined and empty cartItems$ -->
   <ng-container *ngIf="cartItems$ | async as cartItems">
     <div *ngIf="cartItems.length === 0" class="text-gray-500">
       Your cart is empty.
