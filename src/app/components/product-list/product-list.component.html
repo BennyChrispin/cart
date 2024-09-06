@@ -1,0 +1,31 @@
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  <div
+    *ngFor="let product of products$ | async"
+    class="border rounded-lg p-4 shadow"
+  >
+    <!-- card -->
+    <img
+      [src]="product.image"
+      alt="product.title"
+      class="w-full h-48 object-cover object-center"
+    />
+    <h2 class="text-lg font-bold mt-3">{{ product.title }}</h2>
+    <p class="text-gray-700 mt-2">
+      {{
+        product.description.length > 150
+          ? (product.description | slice : 0 : 150) + "..."
+          : product.description
+      }}
+    </p>
+
+    <p class="text-gray-700 mt-2 font-extrabold">
+      {{ product.price | currency }}
+    </p>
+    <button
+      (click)="addToCart(product)"
+      class="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+    >
+      Add to Cart
+    </button>
+  </div>
+</div>

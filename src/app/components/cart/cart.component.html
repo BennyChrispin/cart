@@ -1,0 +1,32 @@
+<div>
+  <h2 class="text-2xl font-bold mb-4">Shopping Cart</h2>
+  <p class="mb-4">Total Items: {{ totalItems$ | async }}</p>
+  <button
+    (click)="clearCart()"
+    class="mb-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+  >
+    Clear Cart
+  </button>
+
+  <!-- Safely handle undefined and empty cartItems$ -->
+  <ng-container *ngIf="cartItems$ | async as cartItems">
+    <div *ngIf="cartItems.length === 0" class="text-gray-500">
+      Your cart is empty.
+    </div>
+
+    <ul *ngIf="cartItems.length > 0">
+      <li
+        *ngFor="let item of cartItems"
+        class="border p-2 mb-2 flex justify-between items-center"
+      >
+        <span>{{ item.title }}</span>
+        <button
+          (click)="removeItem(item)"
+          class="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600"
+        >
+          Remove
+        </button>
+      </li>
+    </ul>
+  </ng-container>
+</div>
